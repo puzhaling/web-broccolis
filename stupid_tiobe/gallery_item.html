@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <title>Assembly</title>
+  </head>
+
+  <body>
+    <fieldset>
+      
+      <p>
+        <a href="main.html"><b>Most Popular Programming Languages</b></a>
+        <br>
+        <a href="statistics.html"><b>Most Popular Programming Languages List</b></a>
+      </p>
+
+      <hr>
+
+      <img src="assets/assembly_logo.png" width="150" height="150">
+  
+      <p>
+      In computer programming, assembly language (alternatively assembler language or symbolic machine code), often referred to simply as assembly and commonly abbreviated as ASM or asm, is any low-level programming language with a very strong correspondence between the instructions in the language and the architecture's machine code instructions. Assembly language usually has one statement per machine instruction (1:1), but constants, comments, assembler directives, symbolic labels of, e.g., memory locations, registers, and macros are generally also supported. 
+      </p>
+    
+      <hr width="350" align="left">
+
+      <p>
+        <em>Code Snippet:</em>
+        <code><pre>
+          .global _start
+
+          .section .data
+          message: .ascii "Hello Baeldung\n"
+
+          .section .text
+          _start:
+          mov $1, %rax
+          mov $1, %rdi
+          mov $message, %rsi
+          mov $15, %rdx
+          syscall
+        
+          mov $60, %rax
+          mov $0, %rdi
+          syscall
+        </pre></code>
+      </p>
+
+    </fieldset>
+  </body>
+</html>
