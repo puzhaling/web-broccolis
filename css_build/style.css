@@ -1,0 +1,134 @@
+#variant {
+  height: 5%;
+  width: 100%;
+  font-size: 2em;
+  font-weight: bold;
+  text-align: center;
+  margin: 0;
+}
+
+.content {
+  height: 95%;
+  width: 100%;
+  border: 1px solid black;
+}
+
+.nav-bar {
+  width: 100%;
+  height: 20%;
+  background-color: lightgrey;
+}
+
+.nav-buttons {
+  width: 80%;
+  height: 90%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+#bgblack {
+  background-color: black;
+}
+
+.nav-button {
+  width: 10%;
+  display: inline-block;
+  font-size: 100%;
+  background-color: grey;
+  padding: 5px 20px;
+  margin: 5px 5px;
+  text-align: left;
+}
+
+.nav-button-text {
+  color: white;
+  width: 100%;
+  font-size: 80%;
+  margin: 0;
+}
+
+.gallery {
+  height: 300px;
+  width: 90%;
+  margin: 0 auto;
+  overflow: hidden;
+  border: 1px solid;
+}
+
+.gallery-picture {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 25%;
+  height: 100%;
+  border: 1px solid;
+}
+
+.gallery-picture img {
+  width: 100%;
+  height: 100%;
+}
+
+#middle {
+  width: 50%;
+}
+
+.articles {
+  height: 35%; 
+  width: 90%;
+  margin: 10px auto;
+}
+
+.article {
+  display: inline-block;
+  width: 48%;
+  vertical-align: top;
+  box-sizing: border-box;
+  background-color: snow;
+}
+
+.article-head {
+  height: 80px;
+  margin: 0 auto;
+  overflow: hidden;
+  text-align: center;
+}
+
+.article-picture {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 30%;
+  height: 100%;
+}
+
+.article-picture img {
+  width: 100%;
+  height: 100%;
+}
+
+.article-title {
+  text-align: center;
+  margin: 5px 0;
+}
+
+.article-body{
+  margin: 0 0;
+  padding: 0 5%;
+  text-align: justify;
+}
+
+.articles-delimeter {
+  display: inline-block;
+  width: 4%;
+}
+
+.foot {
+  height: 20%;
+  background-color: grey;
+  color: black;
+  margin: 0;
+  padding: 7px;
+}
+
+#contacts {
+  float: right;
+}
