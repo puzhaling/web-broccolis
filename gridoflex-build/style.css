@@ -1,0 +1,194 @@
+body {
+  border: thin solid;
+}
+
+header {
+  width: 100%;
+  background-color: grey;
+}
+
+header > .search-bar {
+  display: inline-block;
+  width: 65%;
+  margin: 5px;
+  background-color: white;
+  
+  /*what is another way??*/
+  color: white;
+}
+
+.menu {
+  background-image: url('assets/landscape.jpg');
+  background-size: cover;
+}
+
+nav {
+  display: flex; 
+  justify-content: space-evenly;
+  align-items: flex-start;
+  min-height: 90px;
+  font-weight: bold;
+  font-size: 3vh;
+}
+
+nav > .item1,
+nav > .item2,
+nav > .item3,
+nav > .item4 {
+  padding: 5px;
+}
+
+.page-title {
+  text-align: center; 
+  font-size: 3vh;
+  letter-spacing: 5px;
+  font-weight: bold;
+}
+
+.grid-container {
+  display: grid; 
+  width: 90%;
+  margin: 0 auto;
+  text-align: justify;
+  grid-column-gap: 30px;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(6, 1fr); 
+  grid-template-areas:
+      "img1 header1 img2 header2"
+      "img1 text1   text2 text2" 
+      "img1 text1   img3 header3"
+      "img1 text1   text3 text3"
+      "img1 text1   img4 header4"
+      "img1 text1   text4 text4";
+
+  border: thin solid;
+}
+
+.grid-container img {
+  width: 100%;
+  height: 100%;
+}
+
+
+.grid-container .header-wrapper {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  text-align: left;
+  vertical-align: bottom;
+}
+
+.grid-container > .header1,
+.grid-container > .header2,
+.grid-container > .header3,
+.grid-container > .header4 {
+  font-size: 4vh;
+  background: snow;
+  border: solid thin;
+}
+
+.grid-container > .img1,
+.grid-container > .img2,
+.grid-container > .img3,
+.grid-container > .img4 {
+  background: LightSteelBlue;
+  margin-right: -30px;
+  border: solid thin;
+}
+
+.grid-container > .text1, 
+.grid-container > .text2,
+.grid-container > .text3,
+.grid-container > .text4 {
+  padding: 5px;
+  border: solid thin;
+}
+
+.grid-container > .img1 {
+  grid-area: img1; 
+}
+.grid-container > .text1 {
+  grid-area: text1; 
+}
+.grid-container > .header1 {
+  grid-area: header1;
+}
+.grid-container > .img2 {
+  grid-area: img2;
+}
+.grid-container > .header2 {
+  grid-area: header2;
+}
+.grid-container > .text2 {
+  grid-area: text2;
+}
+.grid-container > .img3 {
+  grid-area: img3;
+}
+.grid-container > .header3 {
+  grid-area: header3;
+}
+.grid-container > .text3 {
+  grid-area: text3;
+}
+.grid-container > .img4 {
+  grid-area: img4;
+}
+.grid-container > .header4 {
+  grid-area: header4;
+}
+.grid-container > .text4 {
+  grid-area: text4;
+}
+
+.footer {
+  border: solid thin;
+}
+
+.footer > .author {
+  display: inline-block;
+  text-align: left;
+  padding: 5px;
+  margin: 0;
+}
+
+.footer > .contacts {
+  display: inline-block;
+  float: right;
+  text-align: right;
+  padding: 5px;
+  margin: 0;
+}
+
+@media (max-width: 700px) {
+  .menu {
+    background-image: none;
+  }
+
+  nav {
+    display: grid;
+    text-align: center;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    justify-content: center;
+  }  
+
+  .grid-container {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(12, 1fr);
+    grid-template-areas:
+        "img1 header1" 
+        "img1 text1" 
+        "img1 text1"
+        "img1 text1"  
+        "img1 text1" 
+        "img1 text1"   
+        "img2 header2"
+        "text2 text2"
+        "img3 header3"
+        "text3 text3"
+        "img4 header4"
+        "text4 text4";
+  }
+}
