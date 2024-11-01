@@ -52,28 +52,50 @@ nav > .item4 {
   text-align: justify;
   grid-column-gap: 30px;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(6, 1fr); 
   grid-template-areas:
-      "img1 header1 img2 header2"
-      "img1 text1   text2 text2" 
-      "img1 text1   img3 header3"
-      "img1 text1   text3 text3"
-      "img1 text1   img4 header4"
-      "img1 text1   text4 text4";
+     "img1 header1  img2 header2"
+     "img1 text1    img2 header2"
+     "img1 text1    img2 header2"
+     "img1 text1    text2 text2"
+     "img1 text1    text2 text2"
+     "img1 text1    text2 text2"
+     "img1 text1    text2 text2"
+     "img1 text1    text2 text2"
+     "img1 text1    text2 text2"
+
+     "img1 text1    img3 header3"
+     "img1 text1    img3 header3"
+     "img1 text1    img3 header3"
+     "img1 text1    text3 text3"
+     "img1 text1    text3 text3"
+     "img1 text1    text3 text3"
+     "img1 text1    text3 text3"
+     "img1 text1    text3 text3"
+     "img1 text1    text3 text3"
+     
+     "img1 text1    img4 header4"
+     "img1 text1    img4 header4"
+     "img1 text1    img4 header4"
+     "img1 text1    text4 text4"
+     "img1 text1    text4 text4"
+     "img1 text1    text4 text4"
+     "img1 text1    text4 text4"
+     "img1 text1    text4 text4"
+     "img1 text1    text4 text4";
 
   border: thin solid;
 }
 
+
 .grid-container img {
   width: 100%;
-  height: 100%;
 }
+
 
 
 .grid-container .header-wrapper {
   display: inline-block;
   width: 100%;
-  height: 100%;
   margin: 0;
   text-align: left;
   vertical-align: bottom;
@@ -86,6 +108,7 @@ nav > .item4 {
   font-size: 4vh;
   background: snow;
   border: solid thin;
+  align-content: center;
 }
 
 .grid-container > .img1,
@@ -95,6 +118,7 @@ nav > .item4 {
   background: LightSteelBlue;
   margin-right: -30px;
   border: solid thin;
+  align-content: center;
 }
 
 .grid-container > .text1, 
@@ -113,6 +137,7 @@ nav > .item4 {
 }
 .grid-container > .header1 {
   grid-area: header1;
+  align-content: end;
 }
 .grid-container > .img2 {
   grid-area: img2;
@@ -176,7 +201,6 @@ nav > .item4 {
 
   .grid-container {
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(12, 1fr);
     grid-template-areas:
         "img1 header1" 
         "img1 text1" 
