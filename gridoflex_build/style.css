@@ -82,8 +82,6 @@ nav > .item4 {
      "img1 text1    text4 text4"
      "img1 text1    text4 text4"
      "img1 text1    text4 text4";
-
-  border: thin solid;
 }
 
 
@@ -107,7 +105,6 @@ nav > .item4 {
 .grid-container > .header4 {
   font-size: 4vh;
   background: snow;
-  border: solid thin;
   align-content: center;
 }
 
@@ -117,7 +114,6 @@ nav > .item4 {
 .grid-container > .img4 {
   background: LightSteelBlue;
   margin-right: -30px;
-  border: solid thin;
   align-content: center;
 }
 
@@ -126,7 +122,6 @@ nav > .item4 {
 .grid-container > .text3,
 .grid-container > .text4 {
   padding: 5px;
-  border: solid thin;
 }
 
 .grid-container > .img1 {
