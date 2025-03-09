@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title> Calculator </title>
+        <script>
+
+            const errBorderColor = "red";
+            const errBorderWidth = "3px";
+            const defBorderColor = "black";
+            const defBorderWidth = "2px";
+
+            function resetColor(DOMelem) {
+                DOMelem.style.borderColor = defBorderColor;
+                DOMelem.style.borderWidth = defBorderWidth; 
+            }
+
+            function opListResetStyle() {
+                let ops = document.getElementsByName('operation');
+
+                for (let j = 0; j < ops.length; ++j)
+                    ops[j].classList.remove('error');
+            }
+
+            function show() {
+                const numtypeImgElem = document.getElementById("numtypeImg");
+                const expElemChecked = document.getElementsByName("numtype")[0].checked;
+
+                if (expElemChecked)
+                    numtypeImgElem.src = "exp_form.png";
+                else
+                    numtypeImgElem.src = "trig_form.png";  
+            }
+
+            function isValidNumber(n) {
+                return (isNaN(parseFloat(n)) || !isFinite(n)) === false;
+            }
+
+            function complexTrigFormAdd(radius1, angle1, radius2, angle2) {
+                const a = radius1 * Math.cos(angle1) + radius2 * Math.cos(angle2);
+                const b = radius1 * Math.sin(angle1) + radius2 * Math.sin(angle2);
+                const r = Math.floor(Math.sqrt(a**2 + b**2) * 100) / 100;
+
+                let phi;
+                if (a > 0)
+                    phi = Math.atan(b / a);
+                else if (a < 0 && b >= 0)
+                    phi = Math.atan(b / a) + Math.PI;
+                else if (a < 0 && b < 0)
+                    phi = Math.atan(b / a) - Math.PI;
+                else if (a === 0 && b > 0)
+                    phi = Math.PI / 2;
+                else if (a === 0 && b < 0) 
+                    phi = -Math.PI / 2;
+
+                phi = Math.floor(phi * 100) / 100;
+
+                if (isNaN(a) || isNaN(b) || isNaN(r) || isNaN(phi))
+                    return `Sum: NaN`;
+                else
+                    return `Sum: ${ r }(cos(${ phi }) + i*sin(${ phi }))`;
+            }
+
+            function complexTrigFormDiff(radius1, angle1, radius2, angle2) {
+                const a = radius1 * Math.cos(angle1) - radius2 * Math.cos(angle2);
+                const b = radius1 * Math.sin(angle1) - radius2 * Math.sin(angle2);
+
+                const r = Math.floor(Math.sqrt(a**2 + b**2) * 100) / 100;
+
+                let phi;
+                if (a > 0)
+                    phi = Math.atan(b / a);
+                else if (a < 0 && b >= 0)
+                    phi = Math.atan(b / a) + Math.PI;
+                else if (a < 0 && b < 0)
+                    phi = Math.atan(b / a) - Math.PI;
+                else if (a === 0 && b > 0)
+                    phi = Math.PI / 2;
+                else if (a === 0 && b < 0)
+                    phi = -Math.PI / 2;
+
+                phi = Math.floor(phi * 100) / 100;
+
+                if (isNaN(a) || isNaN(b) || isNaN(r) || isNaN(phi))
+                    return `Diff: NaN`;
+                else
+                    return `Diff: ${ r }(cos(${ phi }) + i*sin(${ phi }))`;
+            }
+
+            function complexTrigFormQuot(radius1, angle1, radius2, angle2) {
+                const radius3 = Math.floor( (radius1 / radius2) * 100) / 100;
+                const angle3 = Math.floor( (angle1 - angle2) * 100) / 100;
+
+                if (isNaN(radius3) || isNaN(angle3))
+                    return `Quot: NaN`;
+                else
+                    return `Quot: ${ radius3 }(cos(${ angle3 }) + i*sin(${ angle3 }))`;
+            }
+
+            function complexTrigFormProd(radius1, angle1, radius2, angle2) {
+                const radius3 = Math.floor( (radius1 * radius2) * 100) / 100;
+                const angle3 = Math.floor( (angle1 + angle2) * 100) / 100;
+
+                if (isNaN(radius3) || isNaN(angle3))
+                    return `Prod: NaN`;
+                else
+                    return `Prod: ${ radius3 }(cos(${ angle3 }) + i*sin(${ angle3 })))`;
+            }
+
+            function complexExpFormAdd(radius1, angle1, radius2, angle2) {
+                const a1 = radius1 * Math.cos(angle1);
+                const b1 = radius1 * Math.sin(angle1);
+                const a2 = radius2 * Math.cos(angle2);
+                const b2 = radius2 * Math.sin(angle2);
+                const a3 = a1 + a2;
+                const b3 = b1 + b2;
+                let radius3 = Math.sqrt(a3**2 + b3**2);
+                let angle3;
+
+                if (a3 > 0)
+                    angle3 = Math.atan(b3 / a3);
+                else if (a3 < 0)
+                    angle3 = Math.atan(b3 / a3) + Math.PI;
+                else if (a3 === 0 && b > 0)
+                    angle3 = Math.PI / 2;
+                else if (a3 === 0 && b < 0)
+                    angle3 = -(Math.PI / 2);
+
+                radius3 = Math.round(radius3 * 100) / 100;
+                angle3 = Math.round(angle3 * 100) / 100;
+
+                if (isNaN(radius3) || isNaN(angle3))
+                    return `Sum: NaN`;
+                else
+                    return `Sum: ${ radius3 }*e^(i*${ angle3 })`;
+            }
+
+            function complexExpFormDiff(radius1, angle1, radius2, angle2) {
+                const a1 = radius1 * Math.cos(angle1);
+                const b1 = radius1 * Math.sin(angle1);
+                const a2 = radius2 * Math.cos(angle2);
+                const b2 = radius2 * Math.sin(angle2);
+                const a3 = a1 - a2;
+                const b3 = b1 - b2;
+                let radius3 = Math.sqrt(a3**2 + b3**2);
+                let angle3;
+
+                if (a3 > 0)
+                    angle3 = Math.atan(b3 / a3);
+                else if (a3 < 0)
+                    angle3 = Math.atan(b3 / a3) + Math.PI;
+                else if (a3 === 0 && b3 > 0)
+                    angle3 = Math.PI / 2;
+                else if (a3 === 0 && b3 < 0)
+                    angle3 = -(Math.PI / 2);
+
+                radius3 = Math.round(radius3 * 100) / 100;
+                angle3 = Math.round(angle3 * 100) / 100;
+                
+                if (isNaN(radius3) || isNaN(angle3))
+                    return `Diff: NaN`;
+                else
+                    return `Diff: ${ radius3 }*e^(i*${ angle3 })`;
+            }
+
+            function complexExpFormQuot(radius1, angle1, radius2, angle2) {
+                const radius3 = Math.floor( (radius1 / radius2) * 100) / 100;
+                const angle3 = Math.floor( (angle1 - angle2) * 100) / 100;
+
+                if (isNaN(radius3) || isNaN(angle3))
+                    return `Quot: NaN`;
+                else
+                    return `Quot: ${ radius3 }*e^(i*${ angle3 })`;
+            }
+
+            function complexExpFormProd(radius1, angle1, radius2, angle2) {
+                const radius3 = Math.floor( (radius1 * radius2) * 100) / 100;
+                const angle3 = Math.floor( (angle1 + angle2) * 100) / 100;
+
+                if (isNaN(radius3) || isNaN(angle3))
+                    return `Prod: NaN`;
+                else
+                    return `Prod: ${ radius3 }*e^(i*${ angle3 })`;
+            }
+
+            function calculate() {
+                const angle1Elem = document.getElementById("angle1");
+                let angle1Val = angle1Elem.value;
+                const radius1Elem = document.getElementById("radius1");
+                let radius1Val = radius1Elem.value;
+                const angle2Elem = document.getElementById("angle2");
+                let angle2Val = angle2Elem.value;
+                const radius2Elem = document.getElementById("radius2");
+                let radius2Val = radius2Elem.value;
+                const operations = document.getElementsByName("operation");
+                let operationsChecked = 0;
+                const numtypes = document.getElementsByName("numtype");
+                let numtype;
+                let resultElem = document.getElementById("result");
+                let resultStr = "";
+
+                const input1AngleErr = isValidNumber(angle1Val) === false;
+                const input1RadiusErr = isValidNumber(radius1Val) === false;
+                const input2AngleErr = isValidNumber(angle2Val) === false;
+                const input2RadiusErr = isValidNumber(radius2Val) === false;
+
+                if (input1AngleErr) {
+                    angle1Elem.style.borderColor = errBorderColor;
+                    angle1Elem.style.borderWidth = errBorderWidth;
+                    
+                    angle1Elem.value = "";
+                    angle1Elem.placeholder = "value is NaN";
+                } else {
+                    angle1Elem.style.borderColor = defBorderColor;
+                    angle1Elem.style.borderWidth = defBorderWidth;
+                    angle1Elem.placeholder = "enter a value";
+    
+                    angle1Val = +angle1Val;
+                }
+
+                if (input1RadiusErr) {
+                    radius1Elem.style.borderColor = errBorderColor;
+                    radius1Elem.style.borderWidth = errBorderWidth;
+                    
+                    radius1Elem.value = "";
+                    radius1Elem.placeholder = "value is NaN";
+                } else {
+                    radius1Elem.style.borderColor = defBorderColor;
+                    radius1Elem.style.borderWidth = defBorderWidth;
+                    radius1Elem.placeholder = "enter a value";
+    
+                    radius1Val = +radius1Val;
+                }
+
+                if (input2AngleErr) {
+                    angle2Elem.style.borderColor = errBorderColor;
+                    angle2Elem.style.borderWidth = errBorderWidth;
+                    
+                    angle2Elem.value = "";
+                    angle2Elem.placeholder = "value is NaN";
+                } else {
+                    angle2Elem.style.borderColor = defBorderColor;
+                    angle2Elem.style.borderWidth = defBorderWidth;
+                    angle2Elem.placeholder = "enter a value";
+    
+                    angle2Val = +angle2Val;
+                }
+
+                if (input2RadiusErr) {
+                    radius2Elem.style.borderColor = errBorderColor;
+                    radius2Elem.style.borderWidth = errBorderWidth;
+                    
+                    radius2Elem.value = "";
+                    radius2Elem.placeholder = "value is NaN";
+                } else {
+                    radius2Elem.style.borderColor = "black";
+                    radius2Elem.style.borderWidth = "2px";
+                    radius2Elem.placeholder = "enter a value";
+    
+                    radius2Val = +radius2Val;
+                }
+
+                if (input1AngleErr || input1RadiusErr || input2AngleErr || input2RadiusErr)
+                    return;
+
+                for (let j = 0; j < numtypes.length; ++j) {
+                    if (numtypes[j].checked)
+                        numtype = numtypes[j].value;
+                }
+
+
+                for (let j = 0; j < operations.length; ++j) {
+                    if (operations[j].checked && operations[j].value === "quotient") {
+                        if (numtype === "exp")
+                            resultStr += (complexExpFormQuot(radius1Val, angle1Val, radius2Val, angle2Val) + '\n');
+                        else if (numtype === "trig")
+                            resultStr += (complexTrigFormQuot(radius1Val, angle1Val, radius2Val, angle2Val) + '\n');
+
+                        operationsChecked++;
+
+                    } else if (operations[j].checked && operations[j].value === "difference") {
+                        if (numtype === "exp")
+                            resultStr += (complexExpFormDiff(radius1Val, angle1Val, radius2Val, angle2Val) + '\n');
+                        else if (numtype === "trig")
+                            resultStr += (complexTrigFormDiff(radius1Val, angle1Val, radius2Val, angle2Val) + '\n');
+                        
+                        operationsChecked++;
+
+                    } else if (operations[j].checked && operations[j].value === "product") {
+                        if (numtype === "exp")
+                            resultStr += (complexExpFormProd(radius1Val, angle1Val, radius2Val, angle2Val) + '\n');
+                        else if (numtype === "trig")
+                            resultStr += (complexTrigFormProd(radius1Val, angle1Val, radius2Val, angle2Val) + '\n');
+
+                        operationsChecked++;
+
+                    } else if (operations[j].checked && operations[j].value === "sum") {
+                        if (numtype === "exp")
+                            resultStr += (complexExpFormAdd(radius1Val, angle1Val, radius2Val, angle2Val) + '\n');
+                        else if (numtype === "trig") 
+                            resultStr += (complexTrigFormAdd(radius1Val, angle1Val, radius2Val, angle2Val) + '\n');
+
+                        operationsChecked++;
+                    } 
+                }
+
+                if (operationsChecked === 0) {
+                    for (let j = 0; j < operations.length; ++j)
+                        operations[j].classList.add('error');
+                } else {
+                    for (let j = 0; j < operations.length; ++j)
+                        operations[j].classList.remove('error');
+                }
+
+                resultElem.innerText = resultStr;
+            }
+
+            function clearForm() {
+                const mainForm = document.getElementById("mainForm");
+                let mainFormChild;
+
+                if (mainForm == null) {
+                    alert("no such a form"); 
+                } else {
+                    for (let i = 0; i < mainForm.children.length; i++) {
+                        mainFormChild = mainForm.children[i];
+
+                        if (mainFormChild.nodeName === "INPUT" && mainFormChild.type === "text")
+                            mainFormChild.value = "";
+                    }                    
+                }
+            }
+
+        </script>
+
+    <style>
+
+        input[type="checkbox"] {
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border: 2px solid black;
+            border-radius: 3px;
+        }
+
+        input[type="checkbox"]:checked {
+            background-color: blue;
+            border-color: black;
+        }
+
+        input[type="checkbox"].error {
+            border-color: red;
+            border-width: 3px;
+        }
+        
+    </style>
+    </head>
+    <body>
+        <form id="mainForm">
+            <input  type="radio"  name="numtype"  value="exp" checked> Exponential <br>
+            <input  type="radio"  name="numtype"  value="trig">        Trigonometric <br>
+            <br>
+            <img src="exp_form.png" id="numtypeImg">
+            <br>
+            <input  type="button"  value="Show"  onclick="show()">
+            <br>
+
+            <br>
+
+            <span> Number 1: </span><br>
+            <label  for="angle1"> θ: </label>
+            <input  
+                type="text"  
+                placeholder="enter a value"  
+                style="color: black; font-weight: bold; border-color: black; border-width: 2px;"  
+                name="angle1"  
+                id="angle1"
+                onclick="resetColor(this)"
+            >
+            <br>
+            <label  for="radius1"> r: </label>
+            <input  
+                type="text"  
+                placeholder="enter a value"  
+                style="color: black; font-weight: bold; border-color: black; border-width: 2px;"  
+                name="radius1"  
+                id="radius1"
+                onclick="resetColor(this)"
+            >
+            <br>
+
+            <span> Number 2: </span><br>
+            <label  for="angle2"> θ: </label>
+            <input  
+                type="text"  
+                placeholder="enter a value"  
+                style="color: black; font-weight: bold; border-color: black; border-width: 2px;"  
+                name="angle2"  
+                id="angle2"
+                onclick="resetColor(this)"
+            >
+            <br>
+            <label  for="radius2"> r: </label>
+            <input  
+                type="text"  
+                placeholder="enter a value"  
+                style="color: black; font-weight: bold; border-color: black; border-width: 2px;"  
+                name="radius2"  
+                id="radius2"
+                onclick="resetColor(this)"
+            >
+            <br>
+
+            <input  type="checkbox"  name="operation"  onclick="opListResetStyle()"  value="quotient"  >   (/) Quotient   <br>
+            <input  type="checkbox"  name="operation"  onclick="opListResetStyle()"  value="difference"> (-) Difference <br>
+            <input  type="checkbox"  name="operation"  onclick="opListResetStyle()"  value="product">    (*) Product    <br>
+            <input  type="checkbox"  name="operation"  onclick="opListResetStyle()"  value="sum">        (+) Sum        <br>
+
+            <br>
+            
+            <input  type="button"  value="Calculate"  onclick="calculate()">
+            <input  type="button"  value="Clear"  onclick="clearForm()">
+
+            <br>
+            <br>
+
+            <label  for="result"> Result: </label><br>
+            <span  type="text"  name="result"  id="result"> <!-- result inserts here --> </span>
+            <br>
+        </form>
+    </body>
+</html>
