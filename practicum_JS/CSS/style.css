@@ -1,0 +1,9 @@
+#list {
+    th {
+        background-color: darkgrey;
+    }
+    
+    td {
+        background-color: lightgrey;
+    }
+}
