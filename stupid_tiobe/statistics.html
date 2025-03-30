@@ -15,7 +15,7 @@
 
       <hr>
 
-      <form>
+      <form id="chart">
         <details>
           <summary>Chart</summary>
 
@@ -47,473 +47,83 @@
         </details>
       </form>
     
-      <form>
+      <form id="filterForm">
         <details>
           <summary>Filter</summary>
-          <label for="lang_name">Name:</label>
-          <input type="text" name="lang_name">
+          <label for="langName">Name:</label>
+          <input type="text" name="langName" id="langName">
           <br>
 
-          <label>Type:</label>
-          <input type="text">
+          <label for="type">Type:</label>
+          <input type="text" name="type" id="type">
           <br>
 
           <label>Year:</label>
-          <label for="year_from">from</label>
-           <input type="text" name="year_from">
-          <label for="year_to">to</label>
-           <input type="text" name="year_to">
+          <label for="yearFrom">from</label>
+           <input type="number" name="yearFrom" id="yearFrom">
+          <label for="yearTo">to</label>
+           <input type="number" name="yearTo" id="yearTo">
           <br>
 
           <label>Position:</label>
-          <label for="position_from">from</label>
-           <input type="text" name="position_from">
-          <label for="position_to">to</label>
-           <input type="text" name="position_to">
+          <label for="positionFrom">from</label>
+           <input type="number" name="positionFrom" id="positionFrom">
+          <label for="positionTo">to</label>
+           <input type="number" name="positionTo" id="positionTo">
           <br>
 
           <label>Persantage:</label>
-          <label for="persantage_from">from</label>
-           <input type="text" name="persantage_from">
-          <label for="persantage_to">to</label>
-           <input type="text" name="persantage_to">
+          <label for="persantageFrom">from</label>
+           <input type="number" name="persantageFrom" id="persantageFrom">
+          <label for="persantageTo">to</label>
+           <input type="number" name="persantageTo" id="persantageTo">
           <br>
 
-          <input type="submit" value="Apply">
+          <input id="applyFilterBtn" type="button" value="Apply">
+          <input id="clearFilterBtn" type="button" value="Clear">
         </details>
       </form>
 
-      <form>
+      <form id="sortForm">
         <details>
           <summary>Sort</summary>
-          <label for="level_1">First Level:</label>
-          <select name="level_1">
-            <option value="1">No</option>
-            <option value="2">Name</option>
-            <option value="3">Type</option>
-            <option value="4">Year</option>
-            <option value="5">Position</option>
+          <label for="sortFstLevel">First Level:</label>
+          <select name="sortFstLevel" id="sortFstLevel">
           </select>
-          <label for="level_1_is_ascending">ascending order?</label>
-          <input type="checkbox" name="level_1_is_ascending">
+          <label for="sortFstLevelAscFlag">ascending order?</label>
+          <input type="checkbox" name="sortFstLevelAscFlag" id="sortFstLevelAscFlag">
             
           <br>
 
-          <label for="level_2">Second Level:</label>
-          <select name="level_2">
-            <option value="1">No</option>
-            <option value="2">Name</option>
-            <option value="3">Type</option>
-            <option value="4">Year</option>
-            <option value="5">Position</option>
+          <label for="sortSndLevel">Second Level:</label>
+          <select name="sortSndLevel" id="sortSndLevel">
           </select>
-          <label for="level_2_is_ascending">ascending order?</label>
-          <input type="checkbox" name="level_2_is_ascending">
+          <label for="sortSndLevelAscFlag">ascending order?</label>
+          <input type="checkbox" name="sortSndLevelAscFlag" id="sortSndLevelAscFlag">
 
           <br>
 
-          <label for="level_3">Third Level:</label>
-          <select name="level_3">
-            <option value="1">No</option>
-            <option value="2">Name</option>
-            <option value="3">Type</option>
-            <option value="4">Year</option>
-            <option value="5">Position</option>
+          <label for="sortThrdLevel">Third Level:</label>
+          <select name="sortThrdLevel" id="sortThrdLevel">
           </select>
-          <label for="level_3_is_ascending">ascending order?</label>
-          <input type="checkbox" name="level_3_is_ascending">
+          <label for="sortThrdLevelAscFlag">ascending order?</label>
+          <input type="checkbox" name="sortThrdLevelAscFlag" id="sortThrdLevelAscFlag">
           
           <br>
 
-          <input type="submit" value="Apply">
+          <input id="applySortBtn" type="button" value="Apply">
         </details>
       </form>
 
       <hr>
 
-      <table border="2" cellpadding="5" cellspacing="0">
-        <tr>
-          <th>Name</th>
-          <th>Type</th>
-          <th>Year</th>
-          <th>Position</th>
-          <th>Persantage (%)</th>
-        </tr>
-
-        <!-- Java -->
-        <tr>
-          <td>Java</td>
-          <td>Object-Oriented</td>
-          <td>2001</td>
-          <td>1</td>
-          <td>20</td>
-        </tr>
-        <tr>
-          <td>Java</td>
-          <td>Object-Oriented</td>
-          <td>2005</td>
-          <td>1</td>
-          <td>25</td>
-        </tr>
-        <tr>
-          <td>Java</td>
-          <td>Object-Oriented</td>
-          <td>2015</td>
-          <td>1</td>
-          <td>22</td>
-        </tr>
-        <tr>
-          <td>Java</td>
-          <td>Object-Oriented</td>
-          <td>2024</td>
-          <td>2</td>
-          <td>20</td>
-        </tr>
-        <tr>
-          <td>Java</td>
-          <td>Object-Oriented</td>
-          <td>2023</td>
-          <td>2</td>
-          <td>20</td>
-        </tr>
-        
-        <!-- Python -->
-        <tr>
-          <td>Python</td>
-          <td>Multiparadigm</td>
-          <td>2001</td>
-          <td>3</td>
-          <td>10</td>
-        </tr>
-        <tr>
-          <td>Python</td>
-          <td>Multiparadigm</td>
-          <td>2005</td>
-          <td>2</td>
-          <td>15</td>
-        </tr>
-        <tr>
-          <td>Python</td>
-          <td>Multiparadigm</td>
-          <td>2015</td>
-          <td>3</td>
-          <td>20</td>
-        </tr>
-        <tr>
-          <td>Python</td>
-          <td>Multiparadigm</td>
-          <td>2024</td>
-          <td>1</td>
-          <td>30</td>
-        </tr>
-        <tr>
-          <td>Python</td>
-          <td>Multiparadigm</td>
-          <td>2023</td>
-          <td>1</td>
-          <td>30</td>
-        </tr>
-        
-        <!-- C# -->
-        <tr>
-          <td>C#</td>
-          <td>Object-Oriented</td>
-          <td>2001</td>
-          <td>4</td>
-          <td>5</td>
-        </tr>
-        <tr>
-          <td>C#</td>
-          <td>Object-Oriented</td>
-          <td>2005</td>
-          <td>3</td>
-          <td>7</td>
-        </tr>
-        <tr>
-          <td>C#</td>
-          <td>Object-Oriented</td>
-          <td>2015</td>
-          <td>4</td>
-          <td>9</td>
-        </tr>
-        <tr>
-          <td>C#</td>
-          <td>Object-Oriented</td>
-          <td>2024</td>
-          <td>3</td>
-          <td>10</td>
-        </tr>
-        <tr>
-          <td>C#</td>
-          <td>Object-Oriented</td>
-          <td>2023</td>
-          <td>3</td>
-          <td>10</td>
-        </tr>
-        
-        <!-- JavaScript -->
-        <tr>
-          <td>JavaScript</td>
-          <td>Multiparadigm</td>
-          <td>2001</td>
-          <td>5</td>
-          <td>6</td>
-        </tr>
-        <tr>
-          <td>JavaScript</td>
-          <td>Multiparadigm</td>
-          <td>2005</td>
-          <td>4</td>
-          <td>10</td>
-        </tr>
-        <tr>
-          <td>JavaScript</td>
-          <td>Multiparadigm</td>
-          <td>2015</td>
-          <td>2</td>
-          <td>15</td>
-        </tr>
-        <tr>
-          <td>JavaScript</td>
-          <td>Multiparadigm</td>
-          <td>2024</td>
-          <td>2</td>
-          <td>25</td>
-        </tr>
-        <tr>
-          <td>JavaScript</td>
-          <td>Multiparadigm</td>
-          <td>2023</td>
-          <td>2</td>
-          <td>25</td>
-        </tr>
-        
-        <!-- PHP -->
-        <tr>
-          <td>PHP</td>
-          <td>Scripting</td>
-          <td>2001</td>
-          <td>2</td>
-          <td>10</td>
-        </tr>
-        <tr>
-          <td>PHP</td>
-          <td>Scripting</td>
-          <td>2005</td>
-          <td>5</td>
-          <td>9</td>
-        </tr>
-        <tr>
-          <td>PHP</td>
-          <td>Scripting</td>
-          <td>2015</td>
-          <td>5</td>
-          <td>7</td>
-        </tr>
-        <tr>
-          <td>PHP</td>
-          <td>Scripting</td>
-          <td>2024</td>
-          <td>4</td>
-          <td>6</td>
-        </tr>
-        <tr>
-          <td>PHP</td>
-          <td>Scripting</td>
-          <td>2023</td>
-          <td>4</td>
-          <td>6</td>
-        </tr>
-        
-        <!-- Ruby -->
-        <tr>
-          <td>Ruby</td>
-          <td>Multiparadigm</td>
-          <td>2001</td>
-          <td>6</td>
-          <td>4</td>
-        </tr>
-        <tr>
-          <td>Ruby</td>
-          <td>Multiparadigm</td>
-          <td>2005</td>
-          <td>6</td>
-          <td>5</td>
-        </tr>
-        <tr>
-          <td>Ruby</td>
-          <td>Multiparadigm</td>
-          <td>2015</td>
-          <td>8</td>
-          <td>3</td>
-        </tr>
-        <tr>
-          <td>Ruby</td>
-          <td>Multiparadigm</td>
-          <td>2024</td>
-          <td>6</td>
-          <td>2</td>
-        </tr>
-        <tr>
-          <td>Ruby</td>
-          <td>Multiparadigm</td>
-          <td>2023</td>
-          <td>6</td>
-          <td>2</td>
-        </tr>
-        
-        <!-- C++ -->
-        <tr>
-          <td>C++</td>
-          <td>Procedural</td>
-          <td>2001</td>
-          <td>3</td>
-          <td>9</td>
-        </tr>
-        <tr>
-          <td>C++</td>
-          <td>Procedural</td>
-          <td>2005</td>
-          <td>2</td>
-          <td>8</td>
-        </tr>
-        <tr>
-          <td>C++</td>
-          <td>Procedural</td>
-          <td>2015</td>
-          <td>5</td>
-          <td>10</td>
-        </tr>
-        <tr>
-          <td>C++</td>
-          <td>Procedural</td>
-          <td>2024</td>
-          <td>5</td>
-          <td>8</td>
-        </tr>
-        <tr>
-          <td>C++</td>
-          <td>Procedural</td>
-          <td>2023</td>
-          <td>5</td>
-          <td>8</td>
-        </tr>
-        
-        <!-- Swift -->
-        <tr>
-          <td>Swift</td>
-          <td>Multiparadigm</td>
-          <td>2015</td>
-          <td>7</td>
-          <td>5</td>
-        </tr>
-        <tr>
-          <td>Swift</td>
-          <td>Multiparadigm</td>
-          <td>2024</td>
-          <td>6</td>
-          <td>10</td>
-        </tr>
-        <tr>
-          <td>Swift</td>
-          <td>Multiparadigm</td>
-          <td>2023</td>
-          <td>6</td>
-          <td>10</td>
-        </tr>
-        
-        <!-- Go -->
-        <tr>
-          <td>Go</td>
-          <td>Multiparadigm</td>
-          <td>2015</td>
-          <td>10</td>
-          <td>4</td>
-        </tr>
-        <tr>
-          <td>Go</td>
-          <td>Multiparadigm</td>
-          <td>2024</td>
-          <td>7</td>
-          <td>7</td>
-        </tr>
-        <tr>
-          <td>Go</td>
-          <td>Multiparadigm</td>
-          <td>2023</td>
-          <td>7</td>
-          <td>7</td>
-        </tr>
-        
-        <!-- Kotlin -->
-        <tr>
-          <td>Kotlin</td>
-          <td>Object-Oriented</td>
-          <td>2015</td>
-          <td>9</td>
-          <td>3</td>
-        </tr>
-        <tr>
-          <td>Kotlin</td>
-          <td>Object-Oriented</td>
-          <td>2024</td>
-          <td>8</td>
-          <td>5</td>
-        </tr>
-        <tr>
-          <td>Kotlin</td>
-          <td>Object-Oriented</td>
-          <td>2023</td>
-          <td>8</td>
-          <td>5</td>
-        </tr>
-        
-        <!-- TypeScript -->
-        <tr>
-          <td>TypeScript</td>
-          <td>Multiparadigm</td>
-          <td>2015</td>
-          <td>12</td>
-          <td>2</td>
-        </tr>
-        <tr>
-          <td>TypeScript</td>
-          <td>Multiparadigm</td>
-          <td>2024</td>
-          <td>9</td>
-          <td>4</td>
-        </tr>
-        <tr>
-          <td>TypeScript</td>
-          <td>Multiparadigm</td>
-          <td>2023</td>
-          <td>9</td>
-          <td>4</td>
-        </tr>
-
-        <!-- Scala -->
-        <tr>
-          <td>Scala</td>
-          <td>Multiparadigm</td>
-          <td>2015</td>
-          <td>15</td>
-          <td>1</td>
-        </tr>
-        <tr>
-          <td>Scala</td>
-          <td>Multiparadigm</td>
-          <td>2024</td>
-          <td>10</td>
-          <td>2</td>
-        </tr>
-        <tr>
-          <td>Scala</td>
-          <td>Multiparadigm</td>
-          <td>2023</td>
-          <td>10</td>
-          <td>2</td>
-        </tr>
+      <table id="table" border="2" cellpadding="5" cellspacing="0">
       </table>
-
   </body>
+
+  <script src="js/data.js"></script>
+  <script src="js/table.js"></script>
+  <script src="js/sort.js"></script>
+  <script src="js/filter.js"></script>
+  
 </html>
