@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="utf-8">
+		<title>Трансформация и анимация</title>
+		<link rel="stylesheet" href="CSS/style.css">
+		<script src="http://d3js.org/d3.v7.min.js"></script>
+		<script src="JavaScript/main.js"></script>
+		<script src="JavaScript/image.js"></script>
+		<script src="JavaScript/path.js"></script>
+	</head>
+	<body>
+	
+		<form id="setting">
+		<p class="coord-controls"><b>Пути перемещения</b><br>
+			<label for="cx_start">x: </label>
+			<input type="number" id="cx_start" value="300" max="600" min="0">
+			<label for="cx_finish" class="to-label"> до </label>
+			<input type="number" id="cx_finish" class="animation-controls" value="300" max="600" min="0"><br>
+
+			<label for="cy_start">y: </label>
+			<input type="number" id="cy_start" value="300" max="600" min="0">
+			<label for="cy_finish" class="to-label"> до </label>
+			<input type="number" id="cy_finish" class="animation-controls" value="300" max="600" min="0"><br>
+		</p>
+		<p class="path-controls">
+		<label for="path"><b>Пути перемещения:</b></label><br>
+		<select id="path">
+			<option value="Г">Буквой "Г"</option>
+			<option value="О">Буквой "О"</option>
+		</select>
+		</p>
+		<p id="scaleSetting"><b>Масштаб</b><br>
+			<label for="cxScaleFrom">x: </label>
+			<input type="number" id="cxScaleFrom" value="1" max="5" min="1">
+			<label for="cxScaleTo" class="to-label"> до </label>
+			<input type="number" id="cxScaleTo" class="animation-controls" value="1" max="5" min="1"><br>
+
+			<label for="cyScaleFrom">y: </label>
+			<input type="number" id="cyScaleFrom" value="1" max="5" min="1">
+			<label for="cyScaleTo" class="to-label"> до </label>
+			<input type="number" id="cyScaleTo" class="animation-controls" value="1" max="5" min="1"><br>
+		</p>
+		<p id="angleSetting"><b>Поворот</b><br>
+			<label for="angleFrom">угол: </label>
+			<input type="number" id="angleFrom" value="0" max="360" min="0">
+			<label for="angleTo" class="to-label"> до </label>
+			<input type="number" id="angleTo" class="animation-controls" value="0" max="360" min="0"><br>
+		</p>
+		<p>
+			<input id="drawButton" type="button" value="Нарисовать" 
+				onclick="draw(setting)">
+			<input id="clearButton" type="button" value="Очистить" 
+				onclick="clearForm(setting)"><br>
+
+			<input id="enableAnimationCheckbox" type="checkbox"
+				onchange="toggleAnimationControls(this)">
+			<label for="enableAnimationCheckbox">Включить анимацию?</label>
+			<br>
+			<input id="enablePathCrossingCheckbox" type="checkbox"
+				onchange="togglePathControls(this)">
+			<label for="enablePathCrossingCheckbox">Перемещение вдоль пути?</label>
+
+			<select class="animation-select">
+				<option value="linear">linear</option>
+				<option value="elastic">elastic</option>
+				<option value="bounce">bounce</option>
+			</select>
+			<br>
+			<input id="animateButton" type="button" value="Анимировать" 
+				class="animation-controls" onclick="runAnimation(setting)">
+		</p>
+		</form>
+		
+		<svg></svg>
+
+	</body>
+</html>

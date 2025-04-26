@@ -1,0 +1,36 @@
+.animation-controls {
+	display: none;
+}
+
+.animation-enabled .animation-controls {
+	display: inline;
+}
+
+.animation-enabled .draw-controls {
+	display: none;
+}
+
+.to-label, .animation-select {
+	display: none;
+}
+
+.animation-enabled .to-label,
+.animation-enabled .animation-select {
+	display: inline;
+}
+
+.path-controls {
+	display: none;
+}
+
+.coord-controls {
+	display: block;
+}
+
+.hidden {
+	display: none !important;
+}
+
+.shown {
+	display: block !important;
+}
