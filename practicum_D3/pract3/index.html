@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="utf-8">
+		<title>Практическая работа №3</title>
+		<script src="http://d3js.org/d3.v7.min.js"></script>
+		<script src="js/image.js"></script>
+		<script src="js/path.js"></script>
+	</head>
+	<body>
+
+        <form id="settings">
+            <p id="scaleSetting"><b>Масштаб</b><br>
+                <label for="cxScaleFrom">x: </label>
+                <input type="number" id="cxScaleFrom" value="1" max="5" min="1">
+                <label for="cxScaleTo"> до </label>
+                <input type="number" id="cxScaleTo" value="1" max="5" min="1"><br>
+
+                <label for="cyScaleFrom">y: </label>
+                <input type="number" id="cyScaleFrom" value="1" max="5" min="1">
+                <label for="cyScaleTo"> до </label>
+                <input type="number" id="cyScaleTo" value="1" max="5" min="1"><br>
+            </p>
+            <p id="angleSetting"><b>Поворот</b><br>
+                <label for="angleFrom">угол: </label>
+                <input type="number" id="angleFrom" value="0" max="360" min="0">
+                <label for="angleTo"> до </label>
+                <input type="number" id="angleTo" value="0" max="360" min="0"><br>
+            </p>
+
+            <label for="duration"><b>Длительность анимации (секунды): <b></label>
+            <input type="number" id="duration" min="1" max="10" value="3"><br>
+            <input type="button" id="animateBtn" value="Анимировать"><br>
+            <input type="button" id="clearBtn" value="Очистить картинку"><br>
+        </form>
+
+        <br>
+
+        <svg id="outerSvg" style="border: thin solid black;">
+            <svg id="innerSvg"></svg>
+        </svg>
+	</body>
+</html>
