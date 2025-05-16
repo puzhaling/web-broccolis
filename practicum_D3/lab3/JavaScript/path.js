@@ -33,12 +33,12 @@ function createPathG() {
 // создаем массив точек, расположенных по кругу
 function createPathCircle() {
     const svg = d3.select("svg")
-	const width = svg.attr("width") / 2;
-	const height = svg.attr("height") / 2;
+	const width = svg.attr("width");
+	const height = svg.attr("height");
     let data = [];
     // используем параметрическую форму описания круга
     // центр расположен в центре svg-элемента, а радиус равен трети высоты/ширины
-    for (let t = Math.PI ; t <= Math.PI * 3; t += 0.1) {
+    for (let t = 0 ; t <= 5 * Math.PI; t += 0.1) {
         data.push(
             {x: (width / 2) + (width / 3) * Math.sin(t),
              y: (height / 2) + (height / 3) * Math.cos(t)}
