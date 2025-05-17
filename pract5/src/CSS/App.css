@@ -1,0 +1,40 @@
+th, td, table {
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 5px;
+}
+
+th {
+  background-color: lightgrey;
+}
+
+.formFieldName {
+  display: inline-block;
+  width: 130px;
+  text-align: left;
+  padding-right: 15px;
+}
+
+.show {
+  display: ;
+}
+
+.hide {
+  display: none;
+}
+
+.pagesNumContainer {
+  padding: 10px;
+}
+
+.pageNum, .active {
+  padding-right: 10px;
+}
+
+.active {
+  color: blue;
+}
+
+.pageNum:hover, .active:hover {
+  font-weight: bold;
+}
