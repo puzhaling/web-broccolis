@@ -3,6 +3,8 @@
 
   <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="http://d3js.org/d3.v7.min.js"></script>
     <title>Statistics</title>
   </head>
 
@@ -15,34 +17,44 @@
 
       <hr>
 
-      <form id="chart">
+      <form id="chartForm">
         <details>
           <summary>Chart</summary>
 
           <form>
             <table>
               <tr>
-                <th><b><u>X-axis value</u></b></th>
-                <th><b><u>Result</u></b></th>
+                <th><b><u>OX-axis value</u></b></th>
+                <th><b><u>OY-axis value</u></b></th>
               </tr>
               <tr>
                 <td>
-                  <input type="radio" value="type">Type<br>
-                  <input type="radio" value="year">Year<br>
+                  <input type="radio" name="type" value="type" checked>Type<br>
+                  <input type="radio" name="type" value="year">Year<br>
                 </td>
                 <td>
-                  <input type="checkbox" value="lang_count">Language count
+                  <input type="checkbox" value="lowest_rating">
+                    Lowest rating
                   <br>
-                  <input type="checkbox" value="year_highest_rating">
-                    Year highest rating
-                  <br>
-                  <input type="checkbox" value="Type highest rating">
-                    Type highest rating
+                  <input type="checkbox" value="highest_rating">
+                    Highest rating
                   <br>
                 </td>
               </tr>
             </table>
           </form>
+
+          <label for="chartType">Chart type</label>
+          <select name="chartType">
+              <option value="scatter">scatter</option>
+              <option value="histogram">histogram</option>
+              <option value="linear">linear</option>
+          </select>
+          <br>
+
+          <svg id="chart"></svg>
+
+          <input type="button" value="Draw"></input><br>
 
         </details>
       </form>
@@ -125,5 +137,7 @@
   <script src="js/table.js"></script>
   <script src="js/sort.js"></script>
   <script src="js/filter.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/chart.js"></script>
   
 </html>
