@@ -4,11 +4,14 @@ import Filter from './Filter.js';
 import Sort from './Sort.js';
 import { useState } from 'react';
 
+// добавить кнопку очистки сортировки (возврат к отфильтрованным данным) (+)
+// при сбросе фильтров очищать поля сортировки (+)
+
 const Table = (props) => {
-    const fullData = props.data;
-    const [filteredData, setFilteredData] = useState(fullData);
-    const [displayData, setDisplayData] = useState(fullData);
+    const [filteredData, setFilteredData] = useState(props.data);
+    const [displayData, setDisplayData] = useState(props.data);
     const [activePage, setActivePage] = useState("1");
+    const [filterDropStatus, setFilterDropStatus] = useState(false);
 
     const handleFilter = (filteredValues) => {
         setFilteredData(filteredValues);
@@ -27,7 +30,9 @@ const Table = (props) => {
             <h4> Filter </h4>
             <Filter
                 filtering={ handleFilter }
-                fullData={ fullData }
+                fullData={ props.data  }
+
+                setFilterDropStatus={ setFilterDropStatus }
             />
 
             <h4> Sort </h4>
@@ -35,10 +40,13 @@ const Table = (props) => {
                 filteredData={ filteredData }
                 currData={ displayData }
                 setDisplayData={ setDisplayData }
+
+                filterDropStatus={ filterDropStatus }
+                setFilterDropStatus={ setFilterDropStatus }
             />
 
             <table>
-                <TableHead head={ Object.keys(fullData[0]) } />
+                <TableHead head={ Object.keys(props.data[0]) } />
                 <TableBody
                     body={ displayData }
                     amountRows={ amountRows }
@@ -46,7 +54,7 @@ const Table = (props) => {
                 />
             </table>
 
-            {props.enablePagination && (
+            {props.enablePagination && displayData.length > amountRows && (
                 <div className="pagesNumContainer">
                     {pageNumbers.map((pageNum) => (
                         <span

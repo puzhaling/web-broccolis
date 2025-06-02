@@ -1,4 +1,7 @@
+import { useRef } from "react";
+
 const Filter = (props) => {
+    const formRef = useRef();
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -55,10 +58,15 @@ const Filter = (props) => {
         props.filtering(filteredData);
     };
 
-    const handleReset = (event) => props.filtering(props.fullData);
+    const handleClear = (event) => {
+        props.filtering(props.fullData);
+
+        props.setFilterDropStatus(true);
+        formRef.current.reset();
+    }
 
     return (
-        <form onSubmit={ handleSubmit } onReset={ handleReset }>
+        <form onSubmit={ handleSubmit } ref={ formRef }>
             <p>
                 <span className="formFieldName"> Name: </span>
                 <input name="name" type="text" />
@@ -93,7 +101,7 @@ const Filter = (props) => {
             </p>
             <p>
                 <input type="submit" value="Apply"/>
-                <input type="reset" value="Clear"/>
+                <input type="button" value="Clear" onClick={ handleClear }/>
             </p>
         </form>
     );
