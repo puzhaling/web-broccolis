@@ -2,6 +2,10 @@ applyFilterBtn.addEventListener('click', function() {
     filterTable(data, filterForm);
 });
 
+// saves the filtered state of the table to restore
+// it after sort is performed if there is a need
+let filteredData;
+
 clearFilterBtn.addEventListener('click', function() {
     Array.from(filterForm.getElementsByTagName('input'))
         .filter(field => { return field.type != 'button'; })
@@ -10,6 +14,8 @@ clearFilterBtn.addEventListener('click', function() {
     clearTable();
     fillTable(data);
     initSelects();
+    drawGraph(data);
+    filteredData = Object.assign({}, data);
 });
 
 const formToDict = (form) => {
@@ -36,9 +42,8 @@ const formToDict = (form) => {
 
 const filterTable = (data, dataForm) => {
     const datafilter = formToDict(dataForm);
-    console.log('Filter values:', datafilter);
 
-    const tableFilteredData = data.filter(rowData => {
+    filteredData = data.filter(rowData => {
         // Filter by name (contains)
         if (datafilter.langName && 
             rowData.name.toLowerCase().indexOf(datafilter.langName) === -1) {
@@ -83,7 +88,9 @@ const filterTable = (data, dataForm) => {
         return true;
     });
     
-    console.log('Filtered data:', tableFilteredData);
     clearTable();
-    fillTable(tableFilteredData);
+    fillTable(filteredData);
+
+    // redraw the chart after filtration
+    drawGraph(filteredData);
 };

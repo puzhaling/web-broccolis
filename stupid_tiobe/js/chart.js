@@ -43,12 +43,41 @@ function createArrGraph(data, userInput) {
     return arrGraph;
 }
 
+function setErrorStyle() {
+    const styledCheckboxes = d3.select("form#chartForm").
+        selectAll('input[type="checkbox"]');
+
+    styledCheckboxes.each(function() {
+        d3.select(this)
+            .style("outline", "3px solid red");
+    });
+
+    const svg = d3.select("svg#chart")
+        .style("display", "none");
+}
+
+function resetErrorStyle() {
+    const styledCheckboxes = d3.select("form#chartForm").
+        selectAll('input[type="checkbox"]');
+
+    styledCheckboxes.each(function() {
+        d3.select(this)
+            .style("outline", "");
+    });
+
+    const svg = d3.select("svg#chart")
+        .style("display", "");
+}
+
 function drawGraph(data) {
     const userInput = processFormData();
     if (userInput === null) {
-        console.error("Неправильные входные данные");
+        // console.error("Неправильные входные данные");
+        setErrorStyle();
         return;
     }
+
+    resetErrorStyle();
 
     console.log('userInput', userInput);
 

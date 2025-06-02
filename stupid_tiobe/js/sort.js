@@ -175,13 +175,10 @@ const strcmp = (a, b) => {
 
 const sortTable = () => {
     const sortArr = createSortArr(sortForm);
-    
-    console.log('sortArr', sortArr);
 
-    console.log('sortTable: sortArr = ', sortArr);
     if (sortArr.length === 0) {
         clearTable();
-        fillTable(data);
+        fillTable(filteredData);
         return;
     }
 
@@ -195,17 +192,14 @@ const sortTable = () => {
             const cellA = rowA.cells[sort.column].textContent;
             const cellB = rowB.cells[sort.column].textContent;
 
-            // console.log('cellA', cellA);
-            // console.log('cellB', cellB);
-
             let comparsion = 0;
-            
+
             if (isNumber(cellA) && isNumber(cellB)) {
                 comparsion = +cellA - +cellB;
             } else {
                 comparsion = strcmp(cellA, cellB);
             }
-            
+
             if (comparsion !== 0) {
                 return sort.order * comparsion;
             }
@@ -214,10 +208,16 @@ const sortTable = () => {
     });
 
     clearTable();
-    
+
     table.appendChild(headerRow);
-    
+
     rows.forEach(row => table.appendChild(row));
 }
 
 applySortBtn.addEventListener('click', sortTable);
+
+clearSortBtn.addEventListener('click', function() {
+    clearTable();
+    fillTable(filteredData);
+    initSelects();
+});
